@@ -1,18 +1,73 @@
 // DO WHATEVER YOU WANT HERE
+let a = 0;
+const createEnumerableProperty = () => {
+};
+const createNotEnumerableProperty = (propertyName) => {
+  Object.defineProperty(Object.prototype, propertyName, {
+    enumerable: false,
+    set: (propertyValue) => this.propertyValue = propertyValue,
+    get: () => this.propertyValue
+   });
+  return propertyName;
+};
+const createProtoMagicObject = () => {
+  function foo() {};
+  let obj = foo;
+  obj.__proto__ = obj.prototype;
+  return obj;
+};
+const incrementor = () => {
+  let increment = () => {
+    a++;
+    return increment;
+  }
 
-const createEnumerableProperty = () => {};
-const createNotEnumerableProperty = () => {};
-const createProtoMagicObject = () => {};
-const incrementor = () => {};
-const asyncIncrementor = () => {};
-const createIncrementer = () => {};
+  increment.valueOf = () => {
+    return ++a;
+  }
+
+  return increment
+};
+const asyncIncrementor = () => {
+
+};
+
+function *createIncrementer() {
+  let inc = 0;
+  while(true) {
+    yield ++inc;
+  }
+};
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {};
-const getDeepPropertiesCount = () => {};
-const createSerializedObject = () => {};
+const returnBackInSecond = (param) => {};
+const getDeepPropertiesCount = (obj) => {
+  let tmp = obj;
+  let count = 0;
+  let changes = 1;
+  while(changes) {
+    changes = 0;
+    for (let i in tmp) {
+      count++;
+    }
+    for (let i in tmp) {
+      if (typeof tmp[i][i] == 'object') {
+        for (let j in tmp[i]) {
+          count++;
+        }
+        tmp = tmp[i][i];
+        changes++;
+        break;
+      }
+    }
+  }
+  return count;
+};
+const createSerializedObject = () => {
+  return null;
+};
 const toBuffer = () => {};
-const sortByProto = () => {};
+const sortByProto = (arr) => { return arr.sort() };
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
