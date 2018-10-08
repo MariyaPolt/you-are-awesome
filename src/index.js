@@ -28,8 +28,10 @@ const incrementor = () => {
 
   return increment
 };
-const asyncIncrementor = () => {
 
+let inc = 0;
+const asyncIncrementor = () => {
+  return new Promise( (resolve) => resolve(++inc) );
 };
 
 function *createIncrementer() {
@@ -41,10 +43,8 @@ function *createIncrementer() {
 
 // return same argument not earlier than in one second, and not later, than in two
 const returnBackInSecond = (param) => {
-  return new Promise(function(resolve) {
-    setTimeout(function(){
-      resolve(param)
-    }, 1200);
+  return new Promise( function(resolve) {
+    setTimeout(() => resolve(param), 1200);
   });
 };
 const getDeepPropertiesCount = (obj) => {
